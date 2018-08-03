@@ -1,7 +1,11 @@
 <resources>
     <string name="app_name">NovelReader</string>
+    
     <!-- BookShelfActivity -->
     <string name="import_local">本地导入</string>
     <string name="wifi_transmit">wifi传书</string>
     <string name="book_shelf">书架</string>
+    
+    <!-- FindBookActivity -->
+    <string name="search_tips">搜索书名、作者</string>
 </resources>

@@ -30,7 +30,6 @@ public class BookShelfActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_book_shelf);
 
         mViewModel = ViewModelProviders.of(this).get(BookShelfViewModel.class);
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_book_shelf);
