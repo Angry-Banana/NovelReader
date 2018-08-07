@@ -1,12 +1,21 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="BaseTheme" parent="Theme.AppCompat.Light.NoActionBar"/>
+    <style name="BaseTheme" parent="Theme.AppCompat.Light.NoActionBar" />
+
     <style name="AppTheme" parent="BaseTheme">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimary</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+        <!--引入SearchView的自定义样式-->
+        <item name="searchViewStyle">@style/Widget.SearchView</item>
+
+    </style>
+
+    <style name="Widget.SearchView" parent="Widget.AppCompat.SearchView" >
+        <item name="searchHintIcon">@null</item>
     </style>
 
 </resources>

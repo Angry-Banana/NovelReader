@@ -31,17 +31,28 @@ public class FindBookActivity extends BaseActivity {
         inflater.inflate(R.menu.toolbar_find_book_menu, menu);
         MenuItem menuItem = menu.findItem(R.id.menu_search);
         mSearchView = (SearchView) MenuItemCompat.getActionView(menuItem);
+        mSearchView.onActionViewExpanded();
+        mSearchView.setSubmitButtonEnabled(true);
+        mSearchView.setIconified(false);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                finish();
+                break;
+            default:
+                break;
+        }
         return super.onOptionsItemSelected(item);
     }
 
     public void initToolBar() {
         mBinding.toolbar.toolbar.setTitle("");
         setSupportActionBar(mBinding.toolbar.toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
 }
