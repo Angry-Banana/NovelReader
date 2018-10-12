@@ -19,57 +19,59 @@ import com.novel.reader.novelreader.viewmodel.BookShelfViewModel;
 import java.util.ArrayList;
 
 /**
- * BookShelfActivity用于展示书架页面
+ * author : Angry-Banana
+ * e-mail : scau_deng@outlook.com
+ * desc   : BookShelfActivity用于展示书架页面
  */
 public class BookShelfActivity extends BaseActivity {
 
-    private BookShelfViewModel mViewModel;
-    private ActivityBookShelfBinding mBinding;
-    private BookShelfAdapter mAdapter;
+  private BookShelfViewModel mViewModel;
+  private ActivityBookShelfBinding mBinding;
+  private BookShelfAdapter mAdapter;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
 
-        mViewModel = ViewModelProviders.of(this).get(BookShelfViewModel.class);
-        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_book_shelf);
-        mBinding.setActivity(this);
-        mBinding.setViewModel(mViewModel);
+    mViewModel = ViewModelProviders.of(this).get(BookShelfViewModel.class);
+    mBinding = DataBindingUtil.setContentView(this, R.layout.activity_book_shelf);
+    mBinding.setActivity(this);
+    mBinding.setViewModel(mViewModel);
 
-        initToolbar();
-        initRecycleView();
+    initToolbar();
+    initRecycleView();
+  }
+
+  @Override
+  public boolean onCreateOptionsMenu(Menu menu) {
+    MenuInflater inflater = getMenuInflater();
+    inflater.inflate(R.menu.toolbar_book_shelf_menu, menu);
+    return true;
+  }
+
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+    switch (item.getItemId()) {
+      case R.id.menu_search:
+        ActivityLauncher.goToFindBookActivity(this);
+        break;
     }
+    return super.onOptionsItemSelected(item);
+  }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.toolbar_book_shelf_menu, menu);
-        return true;
-    }
+  private void initToolbar() {
+    mBinding.toolbar.toolbar.setTitle("");
+    mBinding.toolbar.tvTitle.setText(R.string.book_shelf);
+    mBinding.toolbar.toolbar.setNavigationIcon(R.mipmap.ic_setting);
+    setSupportActionBar(mBinding.toolbar.toolbar);
+  }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_search:
-                ActivityLauncher.goToFindBookActivity(this);
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    private void initToolbar() {
-        mBinding.toolbar.toolbar.setTitle("");
-        mBinding.toolbar.tvTitle.setText(R.string.book_shelf);
-        mBinding.toolbar.toolbar.setNavigationIcon(R.mipmap.ic_setting);
-        setSupportActionBar(mBinding.toolbar.toolbar);
-    }
-
-    private void initRecycleView() {
-        ArrayList<String> nameList = new ArrayList<>();
-        GridLayoutManager layoutManager = new GridLayoutManager(this, 3);
-        mAdapter = new BookShelfAdapter(nameList);
-        mBinding.recycleView.setLayoutManager(layoutManager);
-        mBinding.recycleView.setAdapter(mAdapter);
-        mBinding.recycleView.setItemAnimator(new DefaultItemAnimator());
-    }
+  private void initRecycleView() {
+    ArrayList<String> nameList = new ArrayList<>();
+    GridLayoutManager layoutManager = new GridLayoutManager(this, 3);
+    mAdapter = new BookShelfAdapter(nameList);
+    mBinding.recycleView.setLayoutManager(layoutManager);
+    mBinding.recycleView.setAdapter(mAdapter);
+    mBinding.recycleView.setItemAnimator(new DefaultItemAnimator());
+  }
 }
